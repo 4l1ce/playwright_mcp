@@ -36,7 +36,7 @@ def parse_html_table(html):
     soup = BeautifulSoup(html, 'html.parser')
     table = soup.find('table')
     if table is None:
-        return []  # or raise an error if you prefer
+        return []
     headers = [th.text.strip() for th in table.find_all('th')]
     rows = []
     for row in table.find_all('tr')[1:]:
@@ -54,7 +54,7 @@ def extract_table(url, selector):
         page.wait_for_selector(selector)
         table_html = page.locator(selector).inner_html()
         browser.close()
-        return {"data": parse_html_table(table_html)}
+        return {"data": parse_html_table(f"<table>{table_html}</table>")}
 
 # === Flask Route ===
 @app.route("/run", methods=["POST"])
