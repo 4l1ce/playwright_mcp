@@ -36,3 +36,18 @@ playwright install
 docker build -t mcp-playwright-tool .
 docker run -p 8080:8080 mcp-playwright-tool
 ```
+---
+
+### 3. Execute request
+Requests example in `call_agent.py`
+```bash
+curl -X POST http://localhost:8080/run \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "extract_table",
+    "parameters": {
+      "url": "https://www.w3schools.com/html/html_tables.asp",
+      "selector": "#customers"
+    }
+  }'
+```
