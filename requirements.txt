@@ -1,0 +1,6 @@
+# Core libraries
+flask
+playwright
+beautifulsoup4
+jsonschema
+requests

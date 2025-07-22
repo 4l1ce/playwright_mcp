@@ -1,0 +1,34 @@
+agent_card:
+  schema_version: "1.0"
+  id: "agent://mcp-tools.local/browser-table-extractor"
+  name: "Browser Table Extractor"
+  description: "Extracts tabular data from a webpage using Playwright and a CSS selector."
+  publisher: "Local Dev"
+  version: "0.1.0"
+  tags: ["playwright", "browser", "scraping", "table"]
+  capabilities:
+    - name: "extract_table"
+      description: "Extracts table data from a webpage using a CSS selector"
+      input_schema:
+        type: object
+        properties:
+          url:
+            type: string
+          selector:
+            type: string
+        required: ["url", "selector"]
+      output_schema:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+        required: ["data"]
+  interaction_model:
+    protocol: "mcp"
+    transport: "http"
+    endpoint: "http://localhost:8080/run"
+    supports_streaming: false
+  authentication:
+    type: "none"
